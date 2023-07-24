@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import AuthPage from "../AuthPage/AuthPage";
-import HomePage from "../HomePage/HomePage.js"; // make sure to import the HomePage
+import HomePage from "../HomePage/HomePage.js";
+import Navbar from "../../components/Navbar/Navbar";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -19,9 +20,12 @@ function App() {
   return (
     <main className="App">
       {user ? (
-        <Routes>
-          <Route path="/home" element={<HomePage />} />
-        </Routes>
+        <>
+          <Navbar />
+          <Routes>
+            <Route path="/home" element={<HomePage />} />
+          </Routes>
+        </>
       ) : (
         <Routes>
           <Route path="/" element={<AuthPage setUser={setUser} />} />
