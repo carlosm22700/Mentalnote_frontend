@@ -37,12 +37,13 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignUp() {
+export default function SignUp({ switchForm }) {
   async function handleSubmit(event) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const user = {
       email: data.get("email"),
+      //change below, username should have its own input
       username: data.get("email"),
       password: data.get("password"),
       first_name: data.get("firstName"),
@@ -142,7 +143,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link onClick={switchForm} variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

@@ -2,19 +2,26 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import AuthPage from "../AuthPage/AuthPage";
+import HomePage from "../HomePage/HomePage.js"; // make sure to import the HomePage
 
 function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Add your API call here to fetch the authenticated user if exists
-    // Upon getting the user set it in state.
+    const token = localStorage.getItem("accessToken");
+
+    // If a token is available in local storage, consider the user to be signed in
+    if (token) {
+      setUser({ loggedIn: true });
+    }
   }, []);
 
   return (
     <main className="App">
       {user ? (
-        <>{/* Add your Route components here */}</>
+        <Routes>
+          <Route path="/home" element={<HomePage />} />
+        </Routes>
       ) : (
         <Routes>
           <Route path="/" element={<AuthPage setUser={setUser} />} />
