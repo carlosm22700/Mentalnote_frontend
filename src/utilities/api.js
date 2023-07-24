@@ -33,3 +33,8 @@ export async function signIn(user) {
     throw error;
   }
 }
+
+export function logout() {
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+}
